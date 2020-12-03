@@ -14,7 +14,9 @@ void loop() {
 
   // check if there is a valid temperature reading
   if ((temperature.get_error() == Ezo_board::SUCCESS) && (temperature.get_last_received_reading() > -1000.0)) {
-    ph.send_read_with_temp_comp(temperature.get_last_received_reading());                                       //send readings from temp sensor to pH sensor
+
+    //send readings from temp sensor to pH sensor
+    ph.send_read_with_temp_comp( temperature.get_last_received_reading() );
   } else {
     ph.send_read_cmd();
   }
