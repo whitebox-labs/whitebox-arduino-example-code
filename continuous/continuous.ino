@@ -1,9 +1,5 @@
-// This example is based on an example by Atlas Scientific
-// https://github.com/Atlas-Scientific/Ezo_I2c_lib/blob/master/Examples/I2c_read_mulitple_circuits/I2c_read_mulitple_circuits.ino
-
 #include <Ezo_i2c.h>                    //include the EZO I2C library from https://github.com/Atlas-Scientific/Ezo_I2c_lib
 #include <Wire.h>
-
 
 Ezo_board ph = Ezo_board(99, "PH");     //create a PH circuit object, who's address is 99 and name is "PH"
 Ezo_board rtd = Ezo_board(102, "TEMP"); //create an RTD Temperature circuit object who's address is 102 and name is "TEMP"
@@ -13,7 +9,6 @@ void setup() {
   Wire.begin();                           //start the I2C
   Serial.begin(9600);                   //start the serial communication to the computer
 }
-
 
 void loop() {
 
@@ -29,12 +24,10 @@ void loop() {
 
 }
 
-
 // function to decode the reading after the read command was issued
 void receive_reading(Ezo_board &Sensor) {
 
   Serial.print(Sensor.get_name()); Serial.print(": ");  // print the name of the circuit getting the reading
-
   Sensor.receive_read_cmd();                            // get the response data
 
   switch (Sensor.get_error()) {                         // switch case based on what the response code is.
@@ -55,3 +48,6 @@ void receive_reading(Ezo_board &Sensor) {
       break;
   }
 }
+
+// based on an example by Atlas Scientific
+// https://github.com/Atlas-Scientific/Ezo_I2c_lib/blob/master/Examples/I2c_read_mulitple_circuits/I2c_read_mulitple_circuits.ino
